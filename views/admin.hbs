@@ -1,0 +1,112 @@
+      <nav class="navbar navbar-expand-lg navbar-dark sticky-top navnegro">
+        <a class="navbar-brand" href="#">
+            <img src="assets/vinimini.png" width="100px" height="70px" class="d-inline-block align-top" alt="">
+          </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/barberos">Barberos</a>
+            </li>
+            
+            <li class="nav-item">
+              <a class="nav-link" href="/reviews" >Reseñas</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/contacto">Contacto</a>
+            </li>
+        </ul>
+            <ul class="navbar-nav ml-auto">
+            {{#if loggedIn}}
+            
+            <div class="badge badge-primary text-wrap" style="width: 6rem;">
+            {{nombre_usuario}}
+            </div> 
+            {{#if panel}}           
+            <a href="/admin">&nbsp;<i class="fas fa-tools">&nbsp;</i></a>  
+            {{else}}
+            {{/if}}         
+            <a href="/cerrar"><i class="fas fa-sign-out-alt"></i></a> 
+
+            {{else}}  
+                           <li class="nav-item">
+              <a class="nav-link" href="/login">Ingresar</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/register">Registrarse</a>
+            </li>           
+               {{/if}}
+          </ul>
+        </div>
+      </nav>  
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+          
+            <table class="table">
+                <thead>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Descripcion</th>
+                    <th>Editar</th>
+                    <th>Borrar</th>
+                </thead>
+                <tbody>
+                    {{#each barber_array}}
+                    <tr>
+                        <td>{{id}}</td>
+                        <td>{{nombre}}</td>
+                        <td>{{descripcion}}</td>
+                        <td><a href="/admin/editar/{{id}}"><i class="fas fa-edit"></i></a></td>
+                        <td><a href="/admin/eliminar/{{id}}" ><i class="fas fa-trash-alt"></i></a></td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+            
+            <button type="button" class="btn btn-dark btn-block" data-toggle="modal" data-target="#exampleModal">Añadir Barbero</button>
+        </div>
+    </div>
+</div>
+
+<!-- Button trigger modal -->
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      
+      <div class="modal-body">
+        <div class="container">
+    <div class="row justify-content-center align-items-center">
+        <div class="col-11">
+            <form action="/admin/altabarber" method="post" enctype="multipart/form-data">
+                <label for="nombre">Nombre</label>
+                      <div type="text"   class="form-group"><input name="nombre" placeholder="Barber" type="text" class="form-control"></div>
+                <label for="nombre">Descripcion</label>  
+                      <textarea name="descripcion" class="form-control" placeholder="Descripcion..."></textarea>  
+                      <br>
+                      <input type="file" name="imagen">     
+                      <br><br>
+                 <button type="submit" class="btn btn-dark btn-block">Agregar</button>  
+                 <br>                
+                                           
+           
+            </form>
+        </div>
+    </div>
+</div>
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+

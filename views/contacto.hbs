@@ -1,0 +1,73 @@
+      <nav class="navbar navbar-expand-lg navbar-dark sticky-top navnegro">
+        <a class="navbar-brand" href="#">
+            <img src="assets/vinimini.png" width="100px" height="70px" class="d-inline-block align-top" alt="">
+          </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+              <a class="nav-link neon" href="/">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link neon" href="/barberos">Barberos</a>
+            </li>
+            
+            <li class="nav-item">
+              <a class="nav-link neon" href="/reviews" >Reseñas</a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link neon" href="/contacto">Contacto</a>
+            </li>
+        </ul>
+           <ul class="navbar-nav ml-auto">
+            {{#if loggedIn}}
+            
+            <div class="badge badge-primary text-wrap" style="width: 6rem;">
+            {{nombre_usuario}}
+            </div> 
+            {{#if panel}}           
+            <a href="/admin">&nbsp;<i class="fas fa-tools">&nbsp;</i></a> 
+            {{else}}
+            {{/if}}         
+            <a href="/cerrar"><i class="fas fa-sign-out-alt"></i></a> 
+
+            {{else}}  
+                           <li class="nav-item">
+              <a class="nav-link" href="/login">Ingresar</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/register">Registrarse</a>
+            </li>           
+               {{/if}}
+          </ul>
+        </div>
+      </nav>  
+
+<div class="container">
+
+        <div class="row justify-content-center align-items-center" >
+        <div class="col-6 text-center">
+          <br>
+          <h2>¡Contactanos!</h2>
+            <br>
+            <form method="post" action="/contacto">
+            <div class="form-group">
+                <input class="form-control"type="email" placeholder="correo" name="correo" >
+            </div>
+            <div class="form-group">
+                <input class="form-control"type="text" placeholder="nombre completo" required name="nombre">
+            </div>
+            <div class="form-group">
+                <textarea class="form-control" name="comentario" placeholder="comentario"></textarea>
+            </div>
+            
+           <button type="submit" class="btn btn-dark btn-block">Enviar</button>
+
+
+            </form>
+            
+        </div>
+    </div>
+</div>

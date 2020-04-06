@@ -1,0 +1,92 @@
+      <nav class="navbar navbar-expand-lg navbar-dark sticky-top navnegro">
+        <a class="navbar-brand" href="#">
+            <img src="assets/vinimini.png" width="100px" height="70px" class="d-inline-block align-top" alt="">
+          </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+              <a class="nav-link neon" href="/">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link neon" href="/barberos">Barberos</a>
+            </li>
+            
+            <li class="nav-item active">
+              <a class="nav-link neon" href="/reviews" >Reseñas</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link neon" href="/contacto">Contacto</a>
+            </li>
+        </ul>
+           <ul class="navbar-nav ml-auto">
+            {{#if loggedIn}}
+            
+            <div class="badge badge-primary text-wrap" style="width: 6rem;">
+            {{nombre_usuario}}
+            </div> 
+            {{#if panel}}           
+            <a href="/admin">&nbsp;<i class="fas fa-tools">&nbsp;</i></a> 
+            {{else}}
+            {{/if}}         
+            <a href="/cerrar"><i class="fas fa-sign-out-alt"></i></a> 
+
+            {{else}}  
+                           <li class="nav-item">
+              <a class="nav-link" href="/login">Ingresar</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/register">Registrarse</a>
+            </li>           
+               {{/if}}
+          </ul>
+        </div>
+      </nav>  
+
+<div class="row mt-3 justify-content-center " style="width: 100%;">
+
+        <div class="col-5" style="height: 100%">
+          <br>
+          {{#each reviews_array}}
+          <div class="sombra2">
+           <div class="card card-colorwhite" style="width: 100%;">             
+            <img class="card-perfil2" src="images/{{perfil}}">
+            <p class=" comentario"><i class="fas fa-quote-left"></i> {{review}} <i class="fas fa-quote-right"></i></p>
+            <div class="overlay"><div class="textleft">Left</div></div>
+            
+            
+            </div>
+            </div>
+            {{/each}}
+          </div> 
+ 
+
+
+    <div class="col-5">
+        <br>
+        <img src="assets/barbeard.png" alt="">
+        <form method="post" action="/reviews">
+            <label for="nombre">Nombre</label>
+            <select class="form-control" name="nom" >
+                <option selected disabled>
+                  Seleccione barbero               
+                </option>
+                {{#each tickets_array}}
+                    <option value="{{nombre}}">{{nombre}}</option>
+                {{/each}}
+
+            </select>    
+                
+               
+            <label for="comentario">Comentario</label>
+            <div class="form-group">
+                <textarea class="form-control" name="comentario" placeholder="comentario"></textarea>
+            </div>
+             <button type="submit" class="btn btn-dark btn-block ">Enviar</button>
+        </form>
+        <br>
+    </div>
+    
+</div>
